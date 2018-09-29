@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t thomascraig/multi-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t vacaccdevops/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run thomascraig/multi-docker npm test -- --coverage
+  - docker run vacaccdevops/multi-docker npm test -- --coverage
 
 after_success:
-  - docker build -t thomascraig/multi-client ./client
-  - docker build -t thomascraig/multi-nginx ./nginx
-  - docker build -t thomascraig/multi-server ./server
-  - docker build -t thomascraig/multi-worker ./worker
+  - docker build -t vacaccdevops/multi-client ./client
+  - docker build -t vacaccdevops/multi-nginx ./nginx
+  - docker build -t vacaccdevops/multi-server ./server
+  - docker build -t vacaccdevops/multi-worker ./worker
   # login to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take the above images and push to docker hub
-  - docker push thomascraig/multi-client
-  - docker push thomascraig/multi-nginx
-  - docker push thomascraig/multi-server
-  - docker push thomascraig/multi-worker
+  - docker push vacaccdevops/multi-client
+  - docker push vacaccdevops/multi-nginx
+  - docker push vacaccdevops/multi-server
+  - docker push vacaccdevops/multi-worker
   
