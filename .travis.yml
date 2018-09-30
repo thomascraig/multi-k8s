@@ -13,9 +13,9 @@ after_success:
   - docker build -t vacaccdevops/multi-nginx ./nginx
   - docker build -t vacaccdevops/multi-server ./server
   - docker build -t vacaccdevops/multi-worker ./worker
-  # login to the docker CLI
+  
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # take the above images and push to docker hub
+  
   - docker push vacaccdevops/multi-client
   - docker push vacaccdevops/multi-nginx
   - docker push vacaccdevops/multi-server
